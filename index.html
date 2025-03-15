@@ -214,30 +214,38 @@
         </script>
 
         <!-- ===== Contact Form Handling ===== -->
-        <script type="text/javascript">
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your User ID
+        })();
+    </script>
 
-                // Collect form data
-                const formData = {
-                    name: this.name.value,
-                    email: this.email.value,
-                    message: this.message.value
-                };
+    <!-- ===== Contact Form Handling ===== -->
+    <script type="text/javascript">
+        const btn = document.getElementById("button");
 
-                // Send the email using EmailJS
-                emailjs.sendForm('service_3bsckml', 'template_fub0o93', formData) // Replace with your Service ID and Template ID
-                    .then(function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                        alert('Message sent successfully!');
-                    }, function(error) {
-                        console.log('FAILED...', error);
-                        alert('Failed to send message. Please try again.');
-                    });
+        document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-                // Reset the form
-                this.reset();
-            });
-        </script>
+            btn.value = "Sending...";
+
+            const serviceID = "default_service";
+            const templateID = "template_fub0o93";
+
+            // Send the email using EmailJS
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.value = "Send Email";
+                    alert("Sent!");
+                }, (err) => {
+                    btn.value = "Send Email";
+                    alert(JSON.stringify(err));
+                });
+
+            // Reset the form
+            this.reset();
+        });
+    </script>
     </body>
 </html>
