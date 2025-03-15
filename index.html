@@ -172,7 +172,7 @@
             </section>
 
             <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
+        <section class="contact section" id="contact">
             <h2 class="section-title">Contact</h2>
 
             <div class="contact__container bd-grid">
@@ -184,50 +184,58 @@
                 </form>
             </div>
         </section>
-        </main>
+</main>
 
-        <!--===== FOOTER =====-->
+        <!-- ===== FOOTER ===== -->
         <footer class="footer">
             <p class="footer__title">Ajwad</p>
             <div class="footer__social">
-                <a href="https://m.facebook.com/profile.php?id=61563974591124" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="https://instagram.com/ajwaduniverse" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="https://x.com/ajwadpk" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+                <a href="https://m.facebook.com/profile.php?id=61563974591124" class="footer__icon"><i class='bx bxl-facebook'></i></a>
+                <a href="https://instagram.com/ajwaduniverse" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+                <a href="https://x.com/ajwadpk" class="footer__icon"><i class='bx bxl-twitter'></i></a>
             </div>
-            <p class="footer__copy">&#169; Ajwad. All rigths reserved</p>
+            <p class="footer__copy">&#169; Ajwad. All rights reserved</p>
         </footer>
 
-
-        <!--===== SCROLL REVEAL =====-->
+        <!-- ===== SCROLL REVEAL ===== -->
         <script src="https://unpkg.com/scrollreveal"></script>
 
-<script type="text/javascript">
-       document.getElementById('contact-form').addEventListener('submit', function(event) {
-           event.preventDefault(); // Prevent the default form submission
-
-           // Collect form data
-           const formData = {
-               name: this.name.value,
-               email: this.email.value,
-               message: this.message.value
-           };
-
-           // Send the email using EmailJS
-           emailjs.send('service_o5ennqg', 'YOUR_TEMPLATE_ID', formData)
-               .then(function(response) {
-                   console.log('SUCCESS!', response.status, response.text);
-                   alert('Message sent successfully!');
-               }, function(error) {
-                   console.log('FAILED...', error);
-                   alert('Failed to send message. Please try again.');
-               });
-
-           // Reset the form
-           this.reset();
-       });
-   </script>
-
-        <!--===== MAIN JS =====-->
+        <!-- ===== MAIN JS ===== -->
         <script src="assets/js/main.js"></script>
+
+        <!-- ===== EmailJS SDK ===== -->
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script type="text/javascript">
+            (function(){
+                emailjs.init("YOUR_USER_ID"); // Replace with your User ID
+            })();
+        </script>
+
+        <!-- ===== Contact Form Handling ===== -->
+        <script type="text/javascript">
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Collect form data
+                const formData = {
+                    name: this.name.value,
+                    email: this.email.value,
+                    message: this.message.value
+                };
+
+                // Send the email using EmailJS
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData) // Replace with your Service ID and Template ID
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        alert('Message sent successfully!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        alert('Failed to send message. Please try again.');
+                    });
+
+                // Reset the form
+                this.reset();
+            });
+        </script>
     </body>
 </html>
