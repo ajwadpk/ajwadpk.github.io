@@ -220,16 +220,16 @@
 
             btn.value = "Sending...";
 
-            const serviceID = "default_service";
+            const serviceID = "service_3bsckml";
             const templateID = "template_fub0o93";
 
             // Send the email using EmailJS
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
-                    btn.value = "Send Email";
+                    btn.value = "Send";
                     alert("Sent!");
                 }, (err) => {
-                    btn.value = "Send Email";
+                    btn.value = "Send";
                     alert(JSON.stringify(err));
                 });
 
